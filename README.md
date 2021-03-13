@@ -1,0 +1,2 @@
+# taskmanager
+> mvn clean test
