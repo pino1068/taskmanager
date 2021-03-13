@@ -12,8 +12,9 @@ public class TaskManager {
 	}
 
 	public void add(Process process) {
-		list.add(process);
-		process.start();
+		if(list.add(process)) {
+			process.start();
+		}
 	}
 	
 	public int size() {

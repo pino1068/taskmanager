@@ -12,8 +12,9 @@ public class DefaultProcesses implements Processes {
 	}
 
 	@Override
-	public void add(Process process) {
+	public boolean add(Process process) {
 		list.add(process);
+		return true;
 	}
 
 	@Override

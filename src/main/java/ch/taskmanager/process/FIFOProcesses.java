@@ -13,11 +13,12 @@ public class FIFOProcesses implements Processes {
 	}
 
 	@Override
-	public void add(Process process) {
+	public boolean add(Process process) {
 		if(list.size() == capacity) {
 			list.remove().kill();
 		}
 		list.add(process);
+		return true;
 	}
 
 	@Override
