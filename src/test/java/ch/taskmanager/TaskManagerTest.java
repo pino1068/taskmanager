@@ -1,14 +1,21 @@
 package ch.taskmanager;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
+
+import ch.taskmanager.process.DefaultProcesses;
+import ch.taskmanager.process.FIFOProcesses;
+import ch.taskmanager.process.PriorityBasedProcesses;
+import ch.taskmanager.process.Process;
 
 public class TaskManagerTest {
 
 	@Test
 	public void createWithCapacity() throws Exception {
-		TaskManager taskManager = new TaskManager(1);
+		TaskManager taskManager = new TaskManager(new DefaultProcesses(1));
 		
 		assertEquals(0, taskManager.size());
 	}
@@ -23,20 +30,34 @@ public class TaskManagerTest {
 
 	@Test
 	public void addProcess() throws Exception {
-		TaskManager taskManager = new TaskManager(1);
+		TaskManager taskManager = new TaskManager(new DefaultProcesses(1));
 		
-		taskManager.add(oneProcess(1));
+		Process process = oneProcess(1);
+		taskManager.add(process);
 		
 		assertEquals(1, taskManager.size());
+		assertEquals(true, process.alive);
 	}
 
 	@Test(expected = IllegalStateException.class)
-	public void exeedCapacity() throws Exception {
-		TaskManager taskManager = new TaskManager(1);
+	public void exceedCapacityWithDefault() {
+		TaskManager taskManager = new TaskManager(new DefaultProcesses(1));
 	
 		taskManager.add(oneProcess(1));
 		taskManager.add(oneProcess(2));
+	}
+	
+	@Test
+	public void exceedCapacityWithFIFO() throws Exception {
+		TaskManager taskManager = new TaskManager(new FIFOProcesses(1));
+	
+		Process process1 = oneProcess(1);
+		taskManager.add(process1);
+		Process process2 = oneProcess(2);
+		taskManager.add(process2);
 		
+		assertFalse(process1.alive);
+		assertTrue(process2.alive);
 	}
 
 	private Process oneProcess(int PID) {

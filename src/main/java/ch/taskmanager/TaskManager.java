@@ -1,22 +1,22 @@
 package ch.taskmanager;
 
-import java.util.Queue;
-import java.util.concurrent.ArrayBlockingQueue;
+import ch.taskmanager.process.Process;
+import ch.taskmanager.process.Processes;
 
 public class TaskManager {
 	
-	private Queue<Process> list;
+	private Processes list;
 
-	public TaskManager(int capacity) {
-		list = new ArrayBlockingQueue<Process>(capacity);
+	public TaskManager(Processes list) {
+		this.list = list;
 	}
 
 	public void add(Process process) {
 		list.add(process);
+		process.start();
 	}
 	
 	public int size() {
 		return list.size();
 	}
-
 }
