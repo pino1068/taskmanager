@@ -2,6 +2,7 @@ package ch.taskmanager.process;
 
 import java.util.Queue;
 import java.util.concurrent.ArrayBlockingQueue;
+import java.util.stream.Stream;
 
 public class DefaultProcesses implements Processes {
 	
@@ -18,8 +19,8 @@ public class DefaultProcesses implements Processes {
 	}
 
 	@Override
-	public int size() {
-		return list.size();
+	public Stream<Process> stream() {
+		return list.stream();
 	}
 
 }

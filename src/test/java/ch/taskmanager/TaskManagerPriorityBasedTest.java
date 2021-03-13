@@ -33,7 +33,7 @@ public class TaskManagerPriorityBasedTest {
 		taskManager.add(process2);
 		
 		assertTrue(process1.isAlive());
-		assertTrue(process2.isAlive());
+		assertFalse(process2.isAlive());
 	}
 
 	@Test

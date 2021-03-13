@@ -1,9 +1,10 @@
 package ch.taskmanager.process;
 
+import java.util.stream.Stream;
+
 public interface Processes {
 
 	boolean add(Process process);
-
-	int size();
+	Stream<Process> stream();
 
 }

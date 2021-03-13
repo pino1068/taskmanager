@@ -3,6 +3,7 @@ package ch.taskmanager.process;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class PriorityBasedProcesses implements Processes {
@@ -35,7 +36,7 @@ public class PriorityBasedProcesses implements Processes {
 	}
 
 	@Override
-	public int size() {
-		return list.size();
+	public Stream<Process> stream() {
+		return list.stream();
 	}
 }

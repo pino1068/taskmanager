@@ -17,7 +17,7 @@ public class TaskManagerDefaultAndFIFOProcessesTest {
 	public void createWithCapacity() throws Exception {
 		TaskManager taskManager = new TaskManager(new DefaultProcesses(1));
 		
-		assertEquals(0, taskManager.size());
+		assertEquals(0, taskManager.list().size());
 	}
 
 	@Test
@@ -35,7 +35,7 @@ public class TaskManagerDefaultAndFIFOProcessesTest {
 		Process process = aProcess(1);
 		taskManager.add(process);
 		
-		assertEquals(1, taskManager.size());
+		assertEquals(1, taskManager.list().size());
 		assertEquals(true, process.isAlive());
 	}
 
