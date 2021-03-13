@@ -47,4 +47,31 @@ public class TaskManager {
 	private List<Process> toList(Stream<Process> stream) {
 		return stream.collect(Collectors.toList());
 	}
+	
+	public void killByPid(int pid) {
+		list
+		.stream()
+		.filter(it -> it.getPid() == pid)
+		.findFirst()
+		.ifPresent(it -> {
+			it.kill();
+		});
+	}
+	
+	public void killByPriority(int priority) {
+		list
+		.stream()
+		.filter(it -> it.getPriority() == priority)
+		.forEach(it -> {
+			it.kill();
+		});
+	}
+	
+	public void killAll() {
+		list
+		.stream()
+		.forEach(it -> {
+			it.kill();
+		});
+	}
 }
