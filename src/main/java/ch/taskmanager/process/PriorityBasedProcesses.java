@@ -3,7 +3,6 @@ package ch.taskmanager.process;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class PriorityBasedProcesses implements Processes {
@@ -19,9 +18,9 @@ public class PriorityBasedProcesses implements Processes {
 	@Override
 	public boolean add(Process process) {
 		if(list.size() == capacity) {
-			if(list.stream().allMatch(it -> it.isAfter(process))) {
+			if(list.stream().allMatch(it -> it.hasLowerPriority(process))) {
 				list.stream()
-				.filter(it -> it.isAfter(process))
+				.filter(it -> it.hasLowerPriority(process))
 				.sorted(Comparator.comparingInt(Process::getPid))
 				.findFirst()
 				.ifPresent(it -> {

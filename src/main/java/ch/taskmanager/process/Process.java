@@ -37,7 +37,7 @@ public class Process {
 		alive = true;
 	}
 
-	public boolean isAfter(Process process) {
+	public boolean hasLowerPriority(Process process) {
 		return getPriority() < process.getPriority();
 	}
 }

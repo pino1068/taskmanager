@@ -6,5 +6,4 @@ public interface Processes {
 
 	boolean add(Process process);
 	Stream<Process> stream();
-
 }

@@ -10,7 +10,7 @@ import org.junit.Test;
 import ch.taskmanager.process.DefaultProcesses;
 import ch.taskmanager.process.Process;
 
-public class TaskManagerProcessTest {
+public class TaskManagerKillProcessTest {
 	
 	private TaskManager taskManager;
 
@@ -23,47 +23,7 @@ public class TaskManagerProcessTest {
 	}
 
 	@Test
-	public void list() throws Exception {
-		
-		List<Process> list = taskManager.list();
-		
-		assertEquals(2, list.get(0).getPid());
-		assertEquals(3, list.get(1).getPid());
-		assertEquals(1, list.get(2).getPid());
-	}
-
-	@Test
-	public void listByTime() throws Exception {
-
-		List<Process> list = taskManager.listByTime();
-		
-		assertEquals(2, list.get(0).getPid());
-		assertEquals(3, list.get(1).getPid());
-		assertEquals(1, list.get(2).getPid());
-	}
-
-	@Test
-	public void listByPriority() throws Exception {
-
-		List<Process> list = taskManager.listByPriority();
-		
-		assertEquals(3, list.get(0).getPid());
-		assertEquals(1, list.get(1).getPid());
-		assertEquals(2, list.get(2).getPid());
-	}
-
-	@Test
-	public void listById() throws Exception {
-
-		List<Process> list = taskManager.listById();
-		
-		assertEquals(1, list.get(0).getPid());
-		assertEquals(2, list.get(1).getPid());
-		assertEquals(3, list.get(2).getPid());
-	}
-	
-	@Test
-	public void killById() throws Exception {
+	public void killById() {
 
 		taskManager.killByPid(2);
 		
@@ -74,7 +34,7 @@ public class TaskManagerProcessTest {
 	}
 	
 	@Test
-	public void killByPriority() throws Exception {
+	public void killByPriority() {
 		taskManager.add(new Process(4, Process.priorities.MEDIUM));
 
 		taskManager.killByPriority(Process.priorities.MEDIUM);
@@ -87,7 +47,7 @@ public class TaskManagerProcessTest {
 	}
 
 	@Test
-	public void killAll() throws Exception {
+	public void killAll() {
 
 		taskManager.killAll();
 		

@@ -11,7 +11,7 @@ import ch.taskmanager.process.Process;
 public class TaskManagerPriorityBasedTest {
 
 	@Test
-	public void exceedCapacity_SkipNewLowerPriority() throws Exception {
+	public void exceedCapacity_SkipNewLowerPriority() {
 		TaskManager taskManager = new TaskManager(new PriorityBasedProcesses(1));
 		
 		Process process1 = new Process(1, Process.priorities.HIGH);
@@ -24,7 +24,7 @@ public class TaskManagerPriorityBasedTest {
 	}
 
 	@Test
-	public void exceedCapacity_SkipNewSamePriority() throws Exception {
+	public void exceedCapacity_SkipNewSamePriority() {
 		TaskManager taskManager = new TaskManager(new PriorityBasedProcesses(1));
 		
 		Process process1 = new Process(1, Process.priorities.HIGH);
@@ -37,7 +37,7 @@ public class TaskManagerPriorityBasedTest {
 	}
 
 	@Test
-	public void exceedCapacity_AddNewHigherPriority() throws Exception {
+	public void exceedCapacity_AddNewHigherPriority() {
 		TaskManager taskManager = new TaskManager(new PriorityBasedProcesses(1));
 		
 		Process process1 = new Process(1, Process.priorities.LOW);
