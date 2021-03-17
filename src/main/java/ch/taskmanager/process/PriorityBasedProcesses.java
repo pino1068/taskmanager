@@ -5,7 +5,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Stream;
 
-public class PriorityBasedProcesses implements Processes {
+class PriorityBasedProcesses implements Processes {
 	
 	private List<Process> list;
 	private int capacity;
@@ -18,9 +18,9 @@ public class PriorityBasedProcesses implements Processes {
 	@Override
 	public boolean add(Process process) {
 		if(list.size() == capacity) {
-			if(list.stream().allMatch(it -> it.hasLowerPriority(process))) {
+			if(list.stream().allMatch(it -> it.hasLowerPriorityThen(process))) {
 				list.stream()
-				.filter(it -> it.hasLowerPriority(process))
+				.filter(it -> it.hasLowerPriorityThen(process))
 				.sorted(Comparator.comparingInt(Process::getPid))
 				.findFirst()
 				.ifPresent(it -> {

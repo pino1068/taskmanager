@@ -1,13 +1,12 @@
 package ch.taskmanager;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
 
-import ch.taskmanager.process.DefaultProcesses;
 import ch.taskmanager.process.Process;
 
 public class TaskManagerKillProcessTest {
@@ -16,7 +15,7 @@ public class TaskManagerKillProcessTest {
 
 	@Before
 	public void setup() {
-		taskManager = new TaskManager(new DefaultProcesses(4));
+		taskManager = TaskManager.createDefault(4);
 		taskManager.add(new Process(2, Process.priorities.LOW));
 		taskManager.add(new Process(3, Process.priorities.HIGH));
 		taskManager.add(new Process(1, Process.priorities.MEDIUM));

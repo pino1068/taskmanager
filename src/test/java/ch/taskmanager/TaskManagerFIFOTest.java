@@ -5,14 +5,13 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import ch.taskmanager.process.FIFOProcesses;
 import ch.taskmanager.process.Process;
 
 public class TaskManagerFIFOTest {
 
 	@Test
 	public void exceedCapacityWithFIFO() {
-		TaskManager taskManager = new TaskManager(new FIFOProcesses(1));
+		TaskManager taskManager = TaskManager.createFIFO(1);
 	
 		Process process1 = aProcess(1);
 		taskManager.add(process1);

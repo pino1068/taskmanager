@@ -2,17 +2,22 @@ package ch.taskmanager;
 
 import static org.junit.Assert.assertEquals;
 
+import org.junit.Before;
 import org.junit.Test;
 
-import ch.taskmanager.process.DefaultProcesses;
 import ch.taskmanager.process.Process;
 
 public class TaskManagerDefaultTest {
+	
+	private TaskManager taskManager;
+
+	@Before
+	public void setup() {
+		taskManager = TaskManager.createDefault(1);
+	}
 
 	@Test
 	public void createWithCapacity() {
-		TaskManager taskManager = new TaskManager(new DefaultProcesses(1));
-		
 		assertEquals(0, taskManager.list().size());
 	}
 
@@ -26,8 +31,6 @@ public class TaskManagerDefaultTest {
 
 	@Test
 	public void addProcess() {
-		TaskManager taskManager = new TaskManager(new DefaultProcesses(1));
-		
 		Process process = aProcess(1);
 		taskManager.add(process);
 		
@@ -37,8 +40,6 @@ public class TaskManagerDefaultTest {
 
 	@Test(expected = IllegalStateException.class)
 	public void exceedCapacityWithDefault() {
-		TaskManager taskManager = new TaskManager(new DefaultProcesses(1));
-	
 		taskManager.add(aProcess(1));
 		taskManager.add(aProcess(2));
 	}

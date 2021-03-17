@@ -4,7 +4,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.stream.Stream;
 
-public class FIFOProcesses implements Processes {
+class FIFOProcesses implements Processes {
 
 	private Queue<Process> list = new LinkedList<>();
 	private int capacity; 

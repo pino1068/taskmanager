@@ -1,5 +1,7 @@
 package ch.taskmanager;
 
+import static java.util.Comparator.comparing;
+
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -33,14 +35,14 @@ public class TaskManager {
 	public List<Process> listByPriority() {
 		return toList(
 				list.stream()
-				.sorted(Comparator.comparing(Process::getPriority).reversed())
+				.sorted(comparing(Process::getPriority).reversed())
 				);
 	}
 
 	public List<Process> listById() {
 		return toList(
 				list.stream()
-				.sorted(Comparator.comparing(Process::getPid))
+				.sorted(comparing(Process::getPid))
 				);
 	}
 
@@ -73,5 +75,17 @@ public class TaskManager {
 		.forEach(it -> {
 			it.kill();
 		});
+	}
+
+	public static TaskManager createDefault(int capacity) {
+		return new TaskManager(Processes.blocking(capacity));
+	}
+
+	public static TaskManager createFIFO(int capacity) {
+		return new TaskManager(Processes.FIFO(capacity));
+	}
+
+	public static TaskManager createPriorityBased(int capacity) {
+		return new TaskManager(Processes.priorityBased(capacity));
 	}
 }

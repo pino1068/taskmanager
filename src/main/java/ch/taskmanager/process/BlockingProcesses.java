@@ -4,11 +4,11 @@ import java.util.Queue;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.stream.Stream;
 
-public class DefaultProcesses implements Processes {
+class BlockingProcesses implements Processes {
 	
 	private Queue<Process> list;
 
-	public DefaultProcesses(int capacity) {
+	public BlockingProcesses(int capacity) {
 		list = new ArrayBlockingQueue<>(capacity);
 	}
 
